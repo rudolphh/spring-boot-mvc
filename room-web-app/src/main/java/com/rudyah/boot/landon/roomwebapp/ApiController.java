@@ -1,29 +1,26 @@
 package com.rudyah.boot.landon.roomwebapp;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Controller
-@RequestMapping("/rooms")
-public class RoomController {
+@RestController
+@RequestMapping("/api")
+public class ApiController {
 
     private RoomServices roomServices;
 
     @Autowired
-    RoomController(RoomServices roomServices){
+    ApiController(RoomServices roomServices){
         super();
         this.roomServices = roomServices;
     }
 
-    @GetMapping
-    public String getAllRooms(Model model){
-        model.addAttribute("rooms", roomServices.getAllRooms());
-        return "rooms";
+    @GetMapping("/rooms")
+    public List<Room> getAllRooms(){
+        return roomServices.getAllRooms();
     }
 }
