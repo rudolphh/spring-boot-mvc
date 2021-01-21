@@ -1,5 +1,6 @@
 package com.rudyah.boot.landon;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.core.Binding;
 import org.springframework.amqp.core.BindingBuilder;
 import org.springframework.amqp.core.Queue;
@@ -50,6 +51,10 @@ public class RoomCleanerConsumerApplication {
 		return container;
 	}
 
+	@Bean
+	public ObjectMapper objectMapper(){
+		return new ObjectMapper();
+	}
 	public static void main(String[] args) {
 		SpringApplication.run(RoomCleanerConsumerApplication.class, args);
 	}
